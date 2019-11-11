@@ -23,7 +23,7 @@ DESTROY: 'destroy';
 EXTERNAL: 'external';
 EXTEND: 'extend';
 GETARG: 'getarg';
-GET: 'get'; 
+GET: 'get';
 IMPORT: 'import';
 MOD: 'mod';
 NEW: 'new';
@@ -38,7 +38,7 @@ READ: 'read';
 SEND: 'send';
 SPEC: 'spec';
 INITIAL : 'initial';
-CHAR: 'char'; 
+CHAR: 'char';
 STRING: 'string';
 BOOL: 'bool';
 RESOURCE: 'resource';
@@ -75,7 +75,7 @@ PUT: 'put';
 TYPE: 'type';
 SUCC : 'succ';
 ID: [a-zA-Z]+;
-TK_SUMA_ASIG: '+:='; 
+TK_SUMA_ASIG: '+:=';
 TK_MENOS_ASIG: '-:=';
 TK_ASIG: ':=';
 TK_COMA: ',';
@@ -107,11 +107,12 @@ TK_TRES_PUNTOS: '...';
 TK_PORCENTAJE: '%';
 TK_AMPERSAND: '&';
 EPSILON: ' ';
+ANY : . ;
 
 WS: [\t\r\n]+ -> skip;
 
 
-/* 
+/*
  * Parser Rules
  */
 
@@ -405,12 +406,3 @@ var_type : INT | CAP | DOUBLE | CHAR | REAL;
 
 ids_group_0 : ID ids_group_01 | EPSILON;
 ids_group_01 : TK_COMA ids_group_0 | EPSILON;
-
-
-
-
-
-
-
-
-
