@@ -13,9 +13,9 @@ http.createServer((req, res) => {
 
 
    var input =
-          `resource lizzyresource()
-          const d := 5
-          end`;
+          `resource d 
+             const d := 10 
+           end`;
    var chars = new antlr4.InputStream(input);
    var lexer = new SRLexer.SRLexer(chars);
    var tokens  = new antlr4.CommonTokenStream(lexer);

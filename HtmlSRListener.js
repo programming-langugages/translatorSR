@@ -12,41 +12,49 @@ HtmlSRListener.prototype = Object.create(SRListener.prototype);
 HtmlSRListener.prototype.constructor = HtmlSRListener;
 // override default listener behavior
 HtmlSRListener.prototype.enterSr_program = function(ctx) {
-    this.Res.write("<strong> Testing this SR grammar <br/>");
-    this.Res.write(ctx.getText());
+    this.Res.write("<strong> Code translated </strong> <br/>");
 
 };
 HtmlSRListener.prototype.exitSr_program = function(ctx) {
-    this.Res.write("</strong> ");
+  var text = '';
+    for (var index = 0; index <  ctx.children.length; index++ ) {
+        if(ctx.children[index].text != null)
+            text += ctx.children[index].text;
+        else
+            text += ctx.children[index].getText();
+    }
+    this.Res.write(text);
 };
 
-
-
-// Enter a parse tree produced by SRParser#resources_body.
-SRListener.prototype.enterResources_body = function(ctx) {
-
-  this.Res.write(ctx.getText());
+// Enter a parse tree produced by SRParser#constant_declaration.
+SRListener.prototype.enterConstant_declaration = function(ctx) {
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(auxtext == ":=")
+      auxtext = "="
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
-// Exit a parse tree produced by SRParser#resources_body.
-SRListener.prototype.exitResources_body = function(ctx) {
+// Exit a parse tree produced by SRParser#constant_declaration.
+SRListener.prototype.exitConstant_declaration = function(ctx) {
 };
 
-
-
-// Enter a parse tree produced by SRParser#resource_body.
 SRListener.prototype.enterResource_body = function(ctx) {
-
-  this.Res.write(ctx.getText());
 };
 
 // Exit a parse tree produced by SRParser#resource_body.
 SRListener.prototype.exitResource_body = function(ctx) {
-
-  this.Res.write(ctx.getText());
+  var text = '';
+    for (var index = 0; index <  ctx.children.length; index++ ) {
+        if(ctx.children[index].text != null)
+            text += ctx.children[index].text;
+        else
+            text += ctx.children[index].getText();
+    }
+    ctx.text = text
 };
-
-
-
 
 exports.HtmlSRListener = HtmlSRListener;
