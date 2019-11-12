@@ -74,7 +74,7 @@ UB: 'ub';
 PUT: 'put';
 TYPE: 'type';
 SUCC : 'succ';
-ID: [a-zA-Z]+;
+ID: [a-zA-Z0-9]+;
 TK_SUMA_ASIG: '+:=';
 TK_MENOS_ASIG: '-:=';
 TK_ASIG: ':=';
@@ -106,9 +106,10 @@ TK_SWAP: ':=:';
 TK_TRES_PUNTOS: '...';
 TK_PORCENTAJE: '%';
 TK_AMPERSAND: '&';
-ANY : . ;
+ANY : .  ->  skip ;
 
 WS: [\t\r\n]+ -> skip;
+
 
 
 /*
@@ -257,8 +258,8 @@ parameter_id : ID | array  | RES array;
 
 array : TK_COR_IZQ ids_group TK_COR_DER | ;
 
-expression : expression boolean_expression | expression arithmethic_expression | ;
-
+expression : expression1  |  ;
+expression1 :  boolean_expression | arithmethic_expression;
 
 
 
@@ -328,7 +329,13 @@ variable_instance1 : TK_PUNTO ID | TK_MENOS_MENOS | TK_SUMA_SUMA
 variable_instance11 : arithmethic_expression arithmethic_expressions semicolon_or_not | call_function | CREATE ID call_function;
 
 
-array_declarations : array_declarations array |  ;
+
+
+
+array_declarations : array array_declaration;
+array_declaration :  TK_COMA array_declarations | ;
+
+
 
 variable_declaration : VAR ID variable_declaration1;
 variable_declaration1 : TK_DOS_PUNTOS variable_declaration111 | ids_group1 variable_declaration11;

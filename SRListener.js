@@ -533,6 +533,15 @@ SRListener.prototype.exitExpression = function(ctx) {
 };
 
 
+// Enter a parse tree produced by SRParser#expression1.
+SRListener.prototype.enterExpression1 = function(ctx) {
+};
+
+// Exit a parse tree produced by SRParser#expression1.
+SRListener.prototype.exitExpression1 = function(ctx) {
+};
+
+
 // Enter a parse tree produced by SRParser#fnp_parameter_type_1.
 SRListener.prototype.enterFnp_parameter_type_1 = function(ctx) {
 };
@@ -800,6 +809,15 @@ SRListener.prototype.enterArray_declarations = function(ctx) {
 
 // Exit a parse tree produced by SRParser#array_declarations.
 SRListener.prototype.exitArray_declarations = function(ctx) {
+};
+
+
+// Enter a parse tree produced by SRParser#array_declaration.
+SRListener.prototype.enterArray_declaration = function(ctx) {
+};
+
+// Exit a parse tree produced by SRParser#array_declaration.
+SRListener.prototype.exitArray_declaration = function(ctx) {
 };
 
 
