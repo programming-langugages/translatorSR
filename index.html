@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Lenguajes de programación</title>
+        
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="z-depth-2 header"><p class="title">Traductor de SP a JS y Analizador léxico y sintactico lenguaje SP</p><p class="names">Brayan Garcia & Nicolás Restrepo</p></div>
+        <div class="customContainer">
+            <div class="leftContainer">
+                <textarea rows="50" cols="50"  id="codeTextArea"></textarea>
+                <div class="buttonsContainer">                   
+                    <a class="btn-floating btn-small  waves-effect waves-light" onclick="lexicalAnalyzer();"><i class="material-icons">play_arrow</i></a> Léxico 
+                    <a class="btn-floating btn-small  waves-effect waves-light margin-left" onclick="syntacticalAnalyzer();"><i class="material-icons">play_arrow</i></a>  Sintactico
+                    <a class="btn-floating btn-small  waves-effect waves-light margin-left red" id="translatorButton"><i class="material-icons">play_arrow</i></a>  Traductor
+                </div>         
+            </div>
+            <div class="rightContainer">
+                <a class="clearButton btn-floating btn-small  waves-effect waves-light" onclick="clearAll();"><i class="material-icons">clear</i></a>
+                <p id="result"></p>
+            </div>
+        </div>
+    </body>
+</html>
