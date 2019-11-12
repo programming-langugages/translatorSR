@@ -404,13 +404,13 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u00070\u0002\u0002\u0293\u0294\u00070\u0002\u0002\u0294\u0295\u0007",
     "0\u0002\u0002\u0295\u00ca\u0003\u0002\u0002\u0002\u0296\u0297\u0007",
     "\'\u0002\u0002\u0297\u00cc\u0003\u0002\u0002\u0002\u0298\u0299\u0007",
-    "(\u0002\u0002\u0299\u00ce\u0003\u0002\u0002\u0002\u029a\u029b\u0007",
-    "\"\u0002\u0002\u029b\u00d0\u0003\u0002\u0002\u0002\u029c\u029e\t\u0004",
-    "\u0002\u0002\u029d\u029c\u0003\u0002\u0002\u0002\u029e\u029f\u0003\u0002",
-    "\u0002\u0002\u029f\u029d\u0003\u0002\u0002\u0002\u029f\u02a0\u0003\u0002",
-    "\u0002\u0002\u02a0\u02a1\u0003\u0002\u0002\u0002\u02a1\u02a2\bi\u0002",
-    "\u0002\u02a2\u00d2\u0003\u0002\u0002\u0002\u0006\u0002\u0249\u027b\u029f",
-    "\u0003\b\u0002\u0002"].join("");
+    "(\u0002\u0002\u0299\u00ce\u0003\u0002\u0002\u0002\u029a\u029b\u000b",
+    "\u0002\u0002\u0002\u029b\u00d0\u0003\u0002\u0002\u0002\u029c\u029e\t",
+    "\u0004\u0002\u0002\u029d\u029c\u0003\u0002\u0002\u0002\u029e\u029f\u0003",
+    "\u0002\u0002\u0002\u029f\u029d\u0003\u0002\u0002\u0002\u029f\u02a0\u0003",
+    "\u0002\u0002\u0002\u02a0\u02a1\u0003\u0002\u0002\u0002\u02a1\u02a2\b",
+    "i\u0002\u0002\u02a2\u00d2\u0003\u0002\u0002\u0002\u0006\u0002\u0249",
+    "\u027b\u029f\u0003\b\u0002\u0002"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -535,7 +535,7 @@ SRLexer.TK_SWAP = 99;
 SRLexer.TK_TRES_PUNTOS = 100;
 SRLexer.TK_PORCENTAJE = 101;
 SRLexer.TK_AMPERSAND = 102;
-SRLexer.EPSILON = 103;
+SRLexer.ANY = 103;
 SRLexer.WS = 104;
 
 SRLexer.prototype.channelNames = [ "DEFAULT_TOKEN_CHANNEL", "HIDDEN" ];
@@ -564,7 +564,7 @@ SRLexer.prototype.literalNames = [ null, "'global'", "'double'", "' body'",
                                    "'->'", "'='", "'<'", "'>'", "'?'", "'*'", 
                                    "'('", "')'", "';'", null, "'--'", "'-'", 
                                    "'[]'", "'++'", "'+'", "'/'", "'.'", 
-                                   "':=:'", "'...'", "'%'", "'&'", "' '" ];
+                                   "':=:'", "'...'", "'%'", "'&'" ];
 
 SRLexer.prototype.symbolicNames = [ null, "GLOBAL", "DOUBLE", "BODY", "CONST", 
                                     "CREATE", "DO", "OD", "FS", "AF", "SKIP_RESERVED", 
@@ -590,7 +590,7 @@ SRLexer.prototype.symbolicNames = [ null, "GLOBAL", "DOUBLE", "BODY", "CONST",
                                     "TK_NUM", "TK_MENOS_MENOS", "TK_MENOS", 
                                     "TK_SEPARA", "TK_SUMA_SUMA", "TK_SUMA", 
                                     "TK_DIV", "TK_PUNTO", "TK_SWAP", "TK_TRES_PUNTOS", 
-                                    "TK_PORCENTAJE", "TK_AMPERSAND", "EPSILON", 
+                                    "TK_PORCENTAJE", "TK_AMPERSAND", "ANY", 
                                     "WS" ];
 
 SRLexer.prototype.ruleNames = [ "GLOBAL", "DOUBLE", "BODY", "CONST", "CREATE", 
@@ -616,7 +616,7 @@ SRLexer.prototype.ruleNames = [ "GLOBAL", "DOUBLE", "BODY", "CONST", "CREATE",
                                 "TK_MENOS_MENOS", "TK_MENOS", "TK_SEPARA", 
                                 "TK_SUMA_SUMA", "TK_SUMA", "TK_DIV", "TK_PUNTO", 
                                 "TK_SWAP", "TK_TRES_PUNTOS", "TK_PORCENTAJE", 
-                                "TK_AMPERSAND", "EPSILON", "WS" ];
+                                "TK_AMPERSAND", "ANY", "WS" ];
 
 SRLexer.prototype.grammarFileName = "SR.g4";
 
