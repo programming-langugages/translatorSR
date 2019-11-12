@@ -26,6 +26,21 @@ HtmlSRListener.prototype.exitSr_program = function(ctx) {
     this.Res.write(text);
 };
 
+ 
+// Enter a parse tree produced by SRParser#resource_body.
+HtmlSRListener.prototype.enterResource_body = function(ctx) {
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(index==0) //resource
+      auxtext = "<span class='fontBlue'>function</span>"
+    else if(index==1) //ID
+      auxtext += "main" 
+    text += auxtext
+  }
+  ctx.text = text;
+};
+
 // Enter a parse tree produced by SRParser#constant_declaration.
 SRListener.prototype.enterConstant_declaration = function(ctx) {
   var text = ''
