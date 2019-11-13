@@ -222,8 +222,8 @@ HtmlSRListener.prototype.enterBody_declaration11 = function(ctx) {
 // Exit a parse tree produced by SRParser#body_declaration11.
 HtmlSRListener.prototype.exitBody_declaration11 = function(ctx) {
   ctx.text = '<span class="fontWhite">(</span>'+
-  getTranslationOrText(ctx,0) + '<span class="fontWhite">){</span>' +
-  getTranslationOrText(ctx,2) + '<span class="fontWhite">}</span>';
+  getTranslationOrText(ctx,0) + '<span class="fontWhite">){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' +
+  getTranslationOrText(ctx,2) + '<span class="fontWhite">}<br>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 
 };
 
@@ -352,8 +352,8 @@ HtmlSRListener.prototype.enterOperation_declaration = function(ctx) {
 HtmlSRListener.prototype.exitOperation_declaration = function(ctx) {
   var translation = '<span class="fontBlue"> var </span> <span class="fontLightBlue">'
                     + getTranslationOrText(ctx, 1) //ID
-                    + '</span> = function' + getTranslationOrText(ctx, 2)  ;
-  ctx.text = translation;
+                    + '</span> = <span class="fontBlue"> function </span>' + getTranslationOrText(ctx, 2)  ;
+  ctx.text = translation + "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 };
 
 
@@ -363,7 +363,7 @@ HtmlSRListener.prototype.enterOperation_declaration1 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#operation_declaration1.
 HtmlSRListener.prototype.exitOperation_declaration1 = function(ctx) {
-  var translation = '(' + getTranslationOrText(ctx,1) + ') {}'; //type_specification_op
+  var translation = '<span class="fontWhite"> ( </span>' + getTranslationOrText(ctx,1) + '<span class="fontWhite">) {} </span>'; //type_specification_op
   ctx.text = translation;
 };
 
@@ -1115,8 +1115,8 @@ HtmlSRListener.prototype.enterVariable_declaration = function(ctx) {
 
 // Exit a parse tree produced by SRParser#variable_declaration.
 HtmlSRListener.prototype.exitVariable_declaration = function(ctx) {
-  var translation = "<span class=\"fontBlue\"> var </ span>" + getTranslationOrText(ctx,1)
-                    + getTranslationOrText(ctx, 2) + ";";
+  var translation = "<span class=\"fontBlue\"> var </span>" + getTranslationOrText(ctx,1)
+                    + getTranslationOrText(ctx, 2) + ";<br>&nbsp;&nbsp;&nbsp;&nbsp;";
   ctx.text = translation;
 };
 
