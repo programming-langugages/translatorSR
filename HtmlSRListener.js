@@ -313,7 +313,7 @@ SRListener.prototype.exitConstant_declaration = function(ctx) {
       auxtext = "<span class='fontWhite'> = </span>"
     text += auxtext
   }
-  ctx.text = text;
+  ctx.text = text + '<br>&nbsp;&nbsp;&nbsp;&nbsp;';
 
 };
 
@@ -378,6 +378,25 @@ HtmlSRListener.prototype.enterConditional_statement = function(ctx) {
 
 // Exit a parse tree produced by SRParser#conditional_statement.
 HtmlSRListener.prototype.exitConditional_statement = function(ctx) {
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(index==0){
+      if(auxtext == 'do')
+        auxtext = "<span class='fontPurple'>" + 'while'  + "</span>"
+      else if(auxtext == 'if')
+        auxtext = "<span class='fontPurple'>" + 'if'  + "</span>"
+    } //if
+    else if(index==2) 
+      auxtext = "<span class='fontWhite'>" + '{'  + "</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+    else if(index==4) 
+      auxtext = "<span class='fontWhite'>" + '}'  + "</span><br>&nbsp;&nbsp;&nbsp;&nbsp;"
+    else 
+      auxtext = getTranslationOrText(ctx, index);
+    text += auxtext
+  }
+  ctx.text = text;
+
 };
 
 
@@ -887,6 +906,18 @@ HtmlSRListener.prototype.enterBoolean_expression = function(ctx) {
 
 // Exit a parse tree produced by SRParser#boolean_expression.
 HtmlSRListener.prototype.exitBoolean_expression = function(ctx) {
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(auxtext=='(')
+      auxtext = "<span class='fontWhite'>" + '('  + "</span>"
+    else if(auxtext==')') 
+      auxtext = "<span class='fontWhite'>" + ')'  + "</span>"
+    else 
+      auxtext = getTranslationOrText(ctx, index);
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
 
@@ -1049,6 +1080,10 @@ HtmlSRListener.prototype.enterOp_binario_boolean = function(ctx) {
 
 // Exit a parse tree produced by SRParser#op_binario_boolean.
 HtmlSRListener.prototype.exitOp_binario_boolean = function(ctx) {
+  var text = ctx.getText()
+  if (text == '=')
+    text = '=='
+  ctx.text = '<span class="fontWhite"> ' + text + ' </span>'
 };
 
 
