@@ -1,3 +1,13 @@
+.fontBlue{
+    color: #757fff;
+}
+.fontWhite{
+    color: white;
+}
+.fontLightBlue{
+    color: #aadbea;
+}
+
 html, body{
     height: 100%;
 }
