@@ -2,7 +2,7 @@ token literal names:
 null
 'global'
 'double'
-' body'
+'body'
 'const '
 'create'
 'do'

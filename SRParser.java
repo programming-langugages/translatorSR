@@ -112,7 +112,7 @@ public class SRParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'global'", "'double'", "' body'", "'const '", "'create'", "'do'", 
+			null, "'global'", "'double'", "'body'", "'const '", "'create'", "'do'", 
 			"'od'", "'fs'", "'af'", "'skip'", "'exit'", "'maxlength'", "'length'", 
 			"'receive'", "'rec'", "'destroy'", "'external'", "'extend'", "'getarg'", 
 			"'get'", "'import'", "'mod'", "'new'", "'real'", "'procedure'", "'process'", 

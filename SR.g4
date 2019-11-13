@@ -6,7 +6,7 @@ grammar SR;
 
 GLOBAL: 'global';
 DOUBLE:  'double';
-BODY:  ' body';
+BODY:  'body';
 CONST: 'const ';
 CREATE: 'create';
 DO: 'do';
@@ -106,6 +106,15 @@ TK_SWAP: ':=:';
 TK_TRES_PUNTOS: '...';
 TK_PORCENTAJE: '%';
 TK_AMPERSAND: '&';
+
+
+
+
+// If whitespaces counted
+//channels { WHITESPACES }
+// and you use them this way
+//WHITESPACE : [ ]+ -> channel(WHITESPACES) ;
+
 ANY : .  ->  skip ;
 
 WS: [\t\r\n]+ -> skip;
