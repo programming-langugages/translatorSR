@@ -1,0 +1,45 @@
+
+resource lizzy()
+   const id := 5
+   if (s1  = s2) -> const id2 := 5 fi
+   do (s1  = s2) -> put(id) fi
+   proc try(s1, s2)
+       const id := 5
+   end
+end
+
+
+
+
+
+resource lizzy()    const id := 5 write(id) if(s2 = true) ->write(true) fi end
+
+
+
+
+resource lizzy()
+const xxxx := 5
+var x, y:int
+
+body rrrr()
+op printa, printb: print
+op f(x:t, y:cap e1)
+
+const yy := 2
+
+end
+
+end
+
+
+
+
+
+
+
+resource e1
+	type t = rec (a,b:int)
+	op f(x:t;y:cap e1)
+	optype print = (x:t) returns y:int
+
+end

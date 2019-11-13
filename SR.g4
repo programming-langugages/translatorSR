@@ -143,7 +143,7 @@ block : interface_part interfaces_part | conditional_statement;
 
 
 
-interfaces_part : interface_part interfaces_part | ;
+interfaces_part : interface_part semicolon_or_not interfaces_part | ;
 
 
 interface_part :  constant_declaration | import_specification | conditional_statement | global_specification | operation_type_declaration

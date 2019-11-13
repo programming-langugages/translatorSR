@@ -101,7 +101,7 @@ SRListener.prototype.exitResource_body = function(ctx) {
     else auxtext = getTranslationOrText(ctx, index);
     text += auxtext
   }
-  ctx.text = text;
+  ctx.text = text + "<br>&nbsp;&nbsp;&nbsp;&nbsp;";
 };
 
 
@@ -374,7 +374,11 @@ HtmlSRListener.prototype.enterOperation_type_declaration = function(ctx) {
 
 // Exit a parse tree produced by SRParser#operation_type_declaration.
 HtmlSRListener.prototype.exitOperation_type_declaration = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  var translation = '<span class="fontBlue"> var </span> <span class="fontLightBlue">'
+                    + getTranslationOrText(ctx, 1) //ID
+                    + '</span> = <span class="fontBlue"> function </span>' + getTranslationOrText(ctx, 3) +
+                    '{<span class="fontPurple"> return </span> ' + getTranslationOrText(ctx,7) + '};';
+  ctx.text = translation + "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 };
 
 
@@ -384,7 +388,7 @@ HtmlSRListener.prototype.enterType_declaration = function(ctx) {
 
 // Exit a parse tree produced by SRParser#type_declaration.
 HtmlSRListener.prototype.exitType_declaration = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  ctx.text = "<br>&nbsp;&nbsp;&nbsp;&nbsp;";
 };
 
 
@@ -612,7 +616,7 @@ HtmlSRListener.prototype.enterType_specification_op_type = function(ctx) {
 
 // Exit a parse tree produced by SRParser#type_specification_op_type.
 HtmlSRListener.prototype.exitType_specification_op_type = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  ctx.text = '('  + getTranslationOrText(ctx,0) + ')';
 };
 
 
@@ -1281,7 +1285,9 @@ HtmlSRListener.prototype.enterSemicolon_or_not = function(ctx) {
 
 // Exit a parse tree produced by SRParser#semicolon_or_not.
 HtmlSRListener.prototype.exitSemicolon_or_not = function(ctx) {
+//  if(ctx.children != null)
   ctx.text = "</br>&nbsp;&nbsp;&nbsp;&nbsp;"
+  //else ctx.text = getTextOfChildrenModified(ctx);
 };
 
 
