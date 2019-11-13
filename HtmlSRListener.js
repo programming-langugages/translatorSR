@@ -26,6 +26,15 @@ function getTextOfChildrenModified(ctx, fromRule, untilRule){
   return text
 };
 
+function getTranslationOrText(ctx, index){
+  var result = "";
+  if(ctx.children[index].text != null)
+      result += ctx.children[index].text;
+  else
+      result += ctx.children[index].getText();
+  return result;
+}
+
 HtmlSRListener.prototype.constructor = HtmlSRListener;
 // override default listener behavior
 HtmlSRListener.prototype.enterSr_program = function(ctx) {
@@ -59,6 +68,13 @@ HtmlSRListener.prototype.exitResources_body = function(ctx) {
 
 // Enter a parse tree produced by SRParser#resource_body.
 HtmlSRListener.prototype.enterResource_body = function(ctx) {
+
+};
+
+
+// Exit a parse tree produced by SRParser#resource_body.
+SRListener.prototype.exitResource_body = function(ctx) {
+
   var text = ''
   for (var index = 0; index <  ctx.children.length; index++ ) {
     let auxtext = ctx.children[index].getText()
@@ -66,19 +82,14 @@ HtmlSRListener.prototype.enterResource_body = function(ctx) {
       auxtext = "<span class='fontBlue'>function </span>";
     else if(index==1) //ID
       auxtext = "main" + auxtext;
+    else auxtext = getTranslationOrText(ctx, index);
     text += auxtext
   }
   console.log("enterResourceTranslation: " + text);
   ctx.text = text + "\n";
-};
 
 
-// Exit a parse tree produced by SRParser#resource_body.
-SRListener.prototype.exitResource_body = function(ctx) {
-
-
-  ctx.text += getTextOfChildrenModified(ctx);
-
+  //ctx.text = getTextOfChildrenModified(ctx);
   console.log("exitResource_body");
   console.log(ctx.text);
   console.log("exitResource_body\n");
@@ -91,30 +102,35 @@ HtmlSRListener.prototype.enterEnd_optional = function(ctx) {
 
 // Exit a parse tree produced by SRParser#end_optional.
 HtmlSRListener.prototype.exitEnd_optional = function(ctx) {
+
+  var translation = "}";
+  ctx.text = translation;
+
 };
 
 
 // Enter a parse tree produced by SRParser#resource_body1.
 HtmlSRListener.prototype.enterResource_body1 = function(ctx) {
-  var translation  = '';
-  var numberOfRules = ctx.children.length;
 
-
-  console.log("Number of rules " + numberOfRules);
-  if(numberOfRules == 3){
-    var translation = ctx.children[0].getText() +
-                      ctx.children[1].getText() + "\n\t{" +
-                      ctx.children[2].getText() + "\n\t}" ;
-    console.log("LSDSSS " + translation);
-    ctx.text = translation;
-  }
 
 
 };
 
 // Exit a parse tree produced by SRParser#resource_body1.
 HtmlSRListener.prototype.exitResource_body1 = function(ctx) {
-  ctx.text += getTextOfChildrenModified(ctx);
+
+  var translation  = '';
+  var numberOfRules = ctx.children.length;
+
+
+  console.log("Number of rules " + numberOfRules);
+  if(numberOfRules == 3){
+    var translation = "(" +
+                      ")" + "\n\t{" +
+                      getTranslationOrText(ctx, 2) ;
+    console.log("Translation of exitResource_body1 " + translation);
+    ctx.text = translation;
+  } else ctx.text = getTextOfChildrenModified(ctx);
   console.log("exitResource_body1");
   console.log(ctx.text);
   console.log("exitResource_body1\n");
@@ -156,7 +172,7 @@ HtmlSRListener.prototype.enterInterfaces_part = function(ctx) {
 // Exit a parse tree produced by SRParser#interfaces_part.
 HtmlSRListener.prototype.exitInterfaces_part = function(ctx) {
 
-  ctx.text += getTextOfChildrenModified(ctx);
+  ctx.text = getTextOfChildrenModified(ctx);
   console.log("exitInterfaces_part");
   console.log(ctx.text);
   console.log("exitInterfaces_part\n");
@@ -171,7 +187,7 @@ HtmlSRListener.prototype.enterInterface_part = function(ctx) {
 // Exit a parse tree produced by SRParser#interface_part.
 HtmlSRListener.prototype.exitInterface_part = function(ctx) {
 
-  ctx.text += getTextOfChildrenModified(ctx);
+  ctx.text = getTextOfChildrenModified(ctx);
   console.log("exitInterface_part");
   console.log(ctx.text);
   console.log("exitInterface_part\n");
@@ -180,17 +196,18 @@ HtmlSRListener.prototype.exitInterface_part = function(ctx) {
 
 // Enter a parse tree produced by SRParser#body_declaration.
 HtmlSRListener.prototype.enterBody_declaration = function(ctx) {
-  console.log(ctx.children.length + " ko");
-  var translation = "function body" + ctx.children[1].getText()
-                    + "{" +
-                    ctx.children[2].getText() + "}";
-  ctx.text = translation;
+
 };
 
 // Exit a parse tree produced by SRParser#body_declaration.
 HtmlSRListener.prototype.exitBody_declaration = function(ctx) {
 
-  ctx.text += getTextOfChildrenModified(ctx);
+
+  var translation = "function body" + ctx.children[1].getText() // ID
+                    + "(){" +
+                    getTranslationOrText(ctx, 2) + "}";
+  ctx.text = translation;
+
   console.log("exitBody_declaration");
   console.log(ctx.text);
   console.log("exitBody_declaration\n");
