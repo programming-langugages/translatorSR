@@ -131,9 +131,6 @@ HtmlSRListener.prototype.enterResource_body11 = function(ctx) {
 // Exit a parse tree produced by SRParser#resource_body11.
 HtmlSRListener.prototype.exitResource_body11 = function(ctx) {
   ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitResource_body11");
-  console.log(ctx.text);
-  console.log("exitResource_body11\n");
 };
 
 
@@ -144,10 +141,7 @@ HtmlSRListener.prototype.enterBlock = function(ctx) {
 
 // Exit a parse tree produced by SRParser#block.
 HtmlSRListener.prototype.exitBlock = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitBlock");
-  console.log(ctx.text);
-  console.log("exitBlock\n");
+  ctx.text = getTextOfChildrenModified(ctx);;
 };
 
 
@@ -159,9 +153,6 @@ HtmlSRListener.prototype.enterInterfaces_part = function(ctx) {
 HtmlSRListener.prototype.exitInterfaces_part = function(ctx) {
 
   ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitInterfaces_part");
-  console.log(ctx.text);
-  console.log("exitInterfaces_part\n");
 };
 
 
@@ -174,9 +165,6 @@ HtmlSRListener.prototype.enterInterface_part = function(ctx) {
 HtmlSRListener.prototype.exitInterface_part = function(ctx) {
 
   ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitInterface_part");
-  console.log(ctx.text);
-  console.log("exitInterface_part\n");
 };
 
 
@@ -194,14 +182,11 @@ HtmlSRListener.prototype.exitBody_declaration = function(ctx) {
                     getTranslationOrText(ctx, 2) + "<span class='fontWhite'>}</span>";
   ctx.text = translation;
 
-  console.log("exitBody_declaration");
-  console.log(ctx.text);
-  console.log("exitBody_declaration\n");
 };
 
 // Exit a parse tree produced by SRParser#comment.
 SRListener.prototype.exitComment = function(ctx) {
-  console.log("COMMMMMMMMMMMMMMMMMENT", ctx)
+
 };
 
 // Enter a parse tree produced by SRParser#body_declaration1.
@@ -406,6 +391,16 @@ HtmlSRListener.prototype.enterProcedure_specification = function(ctx) {
 
 // Exit a parse tree produced by SRParser#procedure_specification.
 HtmlSRListener.prototype.exitProcedure_specification = function(ctx) {
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(auxtext=='end')
+      auxtext = "<span class='fontWhite'>" + '}'  + "</span><br>&nbsp;&nbsp;&nbsp;&nbsp;"
+    else 
+      auxtext = getTranslationOrText(ctx, index);
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
 
@@ -415,6 +410,17 @@ HtmlSRListener.prototype.enterProcedure_specification1 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#procedure_specification1.
 HtmlSRListener.prototype.exitProcedure_specification1 = function(ctx) {
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(auxtext=='(') 
+      auxtext = "<span class='fontWhite'>" + '('  + "</span>"
+    else if(auxtext==')') 
+      auxtext = "<span class='fontWhite'>" + '){'  + "</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
 
@@ -505,6 +511,7 @@ HtmlSRListener.prototype.enterProcedure_reserved_word = function(ctx) {
 
 // Exit a parse tree produced by SRParser#procedure_reserved_word.
 HtmlSRListener.prototype.exitProcedure_reserved_word = function(ctx) {
+  ctx.text = '<span class="fontBlue">function </span>'
 };
 
 
@@ -825,6 +832,7 @@ HtmlSRListener.prototype.enterFnp_reserved_word_type_2 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#fnp_reserved_word_type_2.
 HtmlSRListener.prototype.exitFnp_reserved_word_type_2 = function(ctx) {
+  ctx.text = '<span class="fontGreen">console</span>.log'
 };
 
 
