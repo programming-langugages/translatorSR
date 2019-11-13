@@ -31,7 +31,7 @@ public class SRParser extends Parser {
 		TK_MULTI=87, TK_PAR_IZQ=88, TK_PAR_DER=89, TK_PUNTO_Y_COMA=90, TK_NUM=91, 
 		TK_MENOS_MENOS=92, TK_MENOS=93, TK_SEPARA=94, TK_SUMA_SUMA=95, TK_SUMA=96, 
 		TK_DIV=97, TK_PUNTO=98, TK_SWAP=99, TK_TRES_PUNTOS=100, TK_PORCENTAJE=101, 
-		TK_AMPERSAND=102, ANY=103, WS=104, TK_CADENA=105;
+		TK_AMPERSAND=102, TK_CADENA=103, ANY=104, WS=105;
 	public static final int
 		RULE_sr_program = 0, RULE_resources_body = 1, RULE_resource_body = 2, 
 		RULE_end_optional = 3, RULE_resource_body1 = 4, RULE_resource_body11 = 5, 
@@ -145,7 +145,7 @@ public class SRParser extends Parser {
 			"TK_EXPR_SINC", "TK_MULTI", "TK_PAR_IZQ", "TK_PAR_DER", "TK_PUNTO_Y_COMA", 
 			"TK_NUM", "TK_MENOS_MENOS", "TK_MENOS", "TK_SEPARA", "TK_SUMA_SUMA", 
 			"TK_SUMA", "TK_DIV", "TK_PUNTO", "TK_SWAP", "TK_TRES_PUNTOS", "TK_PORCENTAJE", 
-			"TK_AMPERSAND", "ANY", "WS", "TK_CADENA"
+			"TK_AMPERSAND", "TK_CADENA", "ANY", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -8142,7 +8142,7 @@ public class SRParser extends Parser {
 		"\u025c\3\2\2\2\u025e\u025d\3\2\2\2\u025fu\3\2\2\2\u0260\u0263\5\u00a6"+
 		"T\2\u0261\u0263\5\u00be`\2\u0262\u0260\3\2\2\2\u0262\u0261\3\2\2\2\u0263"+
 		"w\3\2\2\2\u0264\u0265\5\u0080A\2\u0265\u0266\5~@\2\u0266\u026c\3\2\2\2"+
-		"\u0267\u0268\7k\2\2\u0268\u026c\5~@\2\u0269\u026a\7I\2\2\u026a\u026c\5"+
+		"\u0267\u0268\7i\2\2\u0268\u026c\5~@\2\u0269\u026a\7I\2\2\u026a\u026c\5"+
 		"z>\2\u026b\u0264\3\2\2\2\u026b\u0267\3\2\2\2\u026b\u0269\3\2\2\2\u026c"+
 		"y\3\2\2\2\u026d\u026e\7d\2\2\u026e\u026f\7I\2\2\u026f\u0277\5|?\2\u0270"+
 		"\u0271\5\u00ceh\2\u0271\u0272\5~@\2\u0272\u0277\3\2\2\2\u0273\u0274\7"+
@@ -8174,7 +8174,7 @@ public class SRParser extends Parser {
 		"F\2\2\u02c0\u0095\3\2\2\2\u02c1\u02c2\7M\2\2\u02c2\u02c5\7]\2\2\u02c3"+
 		"\u02c5\3\2\2\2\u02c4\u02c1\3\2\2\2\u02c4\u02c3\3\2\2\2\u02c5\u0097\3\2"+
 		"\2\2\u02c6\u02c9\5\u009aN\2\u02c7\u02c9\5\u00d0i\2\u02c8\u02c6\3\2\2\2"+
-		"\u02c8\u02c7\3\2\2\2\u02c9\u0099\3\2\2\2\u02ca\u02cb\7k\2\2\u02cb\u02cc"+
+		"\u02c8\u02c7\3\2\2\2\u02c9\u0099\3\2\2\2\u02ca\u02cb\7i\2\2\u02cb\u02cc"+
 		"\5\u009cO\2\u02cc\u009b\3\2\2\2\u02cd\u02ce\7M\2\2\u02ce\u02d1\5\u009a"+
 		"N\2\u02cf\u02d1\3\2\2\2\u02d0\u02cd\3\2\2\2\u02d0\u02cf\3\2\2\2\u02d1"+
 		"\u009d\3\2\2\2\u02d2\u02d3\7L\2\2\u02d3\u02d6\5\u00be`\2\u02d4\u02d6\3"+

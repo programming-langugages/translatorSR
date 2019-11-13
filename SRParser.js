@@ -389,7 +389,7 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0261\u0263\u0005\u00be`\u0002\u0262\u0260\u0003\u0002\u0002\u0002",
     "\u0262\u0261\u0003\u0002\u0002\u0002\u0263w\u0003\u0002\u0002\u0002",
     "\u0264\u0265\u0005\u0080A\u0002\u0265\u0266\u0005~@\u0002\u0266\u026c",
-    "\u0003\u0002\u0002\u0002\u0267\u0268\u0007k\u0002\u0002\u0268\u026c",
+    "\u0003\u0002\u0002\u0002\u0267\u0268\u0007i\u0002\u0002\u0268\u026c",
     "\u0005~@\u0002\u0269\u026a\u0007I\u0002\u0002\u026a\u026c\u0005z>\u0002",
     "\u026b\u0264\u0003\u0002\u0002\u0002\u026b\u0267\u0003\u0002\u0002\u0002",
     "\u026b\u0269\u0003\u0002\u0002\u0002\u026cy\u0003\u0002\u0002\u0002",
@@ -443,7 +443,7 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0002\u02c4\u02c3\u0003\u0002\u0002\u0002\u02c5\u0097\u0003\u0002\u0002",
     "\u0002\u02c6\u02c9\u0005\u009aN\u0002\u02c7\u02c9\u0005\u00d0i\u0002",
     "\u02c8\u02c6\u0003\u0002\u0002\u0002\u02c8\u02c7\u0003\u0002\u0002\u0002",
-    "\u02c9\u0099\u0003\u0002\u0002\u0002\u02ca\u02cb\u0007k\u0002\u0002",
+    "\u02c9\u0099\u0003\u0002\u0002\u0002\u02ca\u02cb\u0007i\u0002\u0002",
     "\u02cb\u02cc\u0005\u009cO\u0002\u02cc\u009b\u0003\u0002\u0002\u0002",
     "\u02cd\u02ce\u0007M\u0002\u0002\u02ce\u02d1\u0005\u009aN\u0002\u02cf",
     "\u02d1\u0003\u0002\u0002\u0002\u02d0\u02cd\u0003\u0002\u0002\u0002\u02d0",
@@ -649,7 +649,7 @@ var symbolicNames = [ null, "GLOBAL", "DOUBLE", "BODY", "CONST", "CREATE",
                       "TK_NUM", "TK_MENOS_MENOS", "TK_MENOS", "TK_SEPARA", 
                       "TK_SUMA_SUMA", "TK_SUMA", "TK_DIV", "TK_PUNTO", "TK_SWAP", 
                       "TK_TRES_PUNTOS", "TK_PORCENTAJE", "TK_AMPERSAND", 
-                      "ANY", "WS", "TK_CADENA" ];
+                      "TK_CADENA", "ANY", "WS" ];
 
 var ruleNames =  [ "sr_program", "resources_body", "resource_body", "end_optional", 
                    "resource_body1", "resource_body11", "block", "interfaces_part", 
@@ -814,9 +814,9 @@ SRParser.TK_SWAP = 99;
 SRParser.TK_TRES_PUNTOS = 100;
 SRParser.TK_PORCENTAJE = 101;
 SRParser.TK_AMPERSAND = 102;
-SRParser.ANY = 103;
-SRParser.WS = 104;
-SRParser.TK_CADENA = 105;
+SRParser.TK_CADENA = 103;
+SRParser.ANY = 104;
+SRParser.WS = 105;
 
 SRParser.RULE_sr_program = 0;
 SRParser.RULE_resources_body = 1;

@@ -1,3 +1,21 @@
+.fontBlue{
+    color: #757fff;
+}
+.fontWhite{
+    color: white;
+}
+.fontLightBlue{
+    color: #aadbea;
+}
+.fontGreen{
+    color: #5ed449;
+}
+.fontLightGreen{
+    color: #beeabe;
+}
+.fontPurple{
+    color: #c05cff;
+}
 html, body{
     height: 100%;
 }

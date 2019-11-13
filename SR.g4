@@ -106,6 +106,7 @@ TK_SWAP: ':=:';
 TK_TRES_PUNTOS: '...';
 TK_PORCENTAJE: '%';
 TK_AMPERSAND: '&';
+TK_CADENA: '\'' .*? '\'';
 
 
 
@@ -118,6 +119,7 @@ TK_AMPERSAND: '&';
 ANY : .  ->  skip ;
 
 WS: [\t\r\n]+ -> skip;
+
 
 
 

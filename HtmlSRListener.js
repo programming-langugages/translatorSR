@@ -53,7 +53,7 @@ function getTranslationOrText(ctx, index){
 HtmlSRListener.prototype.constructor = HtmlSRListener;
 // override default listener behavior
 HtmlSRListener.prototype.enterSr_program = function(ctx) {
-    this.Res.write("<strong> Code translated </strong> <br/>");
+    this.Res.write("<span class='fontLightGreen'> //Code translated </span> <br/>");
 
 
 };
@@ -101,14 +101,7 @@ SRListener.prototype.exitResource_body = function(ctx) {
     else auxtext = getTranslationOrText(ctx, index);
     text += auxtext
   }
-  console.log("enterResourceTranslation: " + text);
-  ctx.text = text + "\n";
-
-
-  //ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitResource_body");
-  console.log(ctx.text);
-  console.log("exitResource_body\n");
+  ctx.text = text;
 };
 
 
@@ -119,7 +112,7 @@ HtmlSRListener.prototype.enterEnd_optional = function(ctx) {
 // Exit a parse tree produced by SRParser#end_optional.
 HtmlSRListener.prototype.exitEnd_optional = function(ctx) {
 
-  var translation = "}";
+  var translation = "<br><span class='fontWhite'>}</span>";
   ctx.text = translation;
 
 };
@@ -139,15 +132,11 @@ HtmlSRListener.prototype.exitResource_body1 = function(ctx) {
   var numberOfRules = ctx.children.length;
 
   if(numberOfRules == 3){
-    var translation = "(" +
-                      ")" + "\n\t{" +
+    var translation = "<span class='fontWhite'>(</span>" +
+                      "<span class='fontWhite'>)</span>" + "<span class='fontWhite'>{</span><br>&nbsp;&nbsp;&nbsp;&nbsp;" +
                       getTranslationOrText(ctx, 2) ;
-    console.log("Translation of exitResource_body1 " + translation);
     ctx.text = translation;
   } else ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitResource_body1");
-  console.log(ctx.text);
-  console.log("exitResource_body1\n");
 };
 
 
@@ -159,9 +148,6 @@ HtmlSRListener.prototype.enterResource_body11 = function(ctx) {
 // Exit a parse tree produced by SRParser#resource_body11.
 HtmlSRListener.prototype.exitResource_body11 = function(ctx) {
   ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitResource_body11");
-  console.log(ctx.text);
-  console.log("exitResource_body11\n");
 };
 
 
@@ -172,10 +158,7 @@ HtmlSRListener.prototype.enterBlock = function(ctx) {
 
 // Exit a parse tree produced by SRParser#block.
 HtmlSRListener.prototype.exitBlock = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitBlock");
-  console.log(ctx.text);
-  console.log("exitBlock\n");
+  ctx.text = getTextOfChildrenModified(ctx);;
 };
 
 
@@ -187,9 +170,6 @@ HtmlSRListener.prototype.enterInterfaces_part = function(ctx) {
 HtmlSRListener.prototype.exitInterfaces_part = function(ctx) {
 
   ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitInterfaces_part");
-  console.log(ctx.text);
-  console.log("exitInterfaces_part\n");
 };
 
 
@@ -202,9 +182,6 @@ HtmlSRListener.prototype.enterInterface_part = function(ctx) {
 HtmlSRListener.prototype.exitInterface_part = function(ctx) {
 
   ctx.text = getTextOfChildrenModified(ctx);
-  console.log("exitInterface_part");
-  console.log(ctx.text);
-  console.log("exitInterface_part\n");
 };
 
 
@@ -216,19 +193,17 @@ HtmlSRListener.prototype.enterBody_declaration = function(ctx) {
 // Exit a parse tree produced by SRParser#body_declaration.
 HtmlSRListener.prototype.exitBody_declaration = function(ctx) {
 
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA")
-  console.log(getTranslationOrText(ctx, 2));
-  console.log("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ")
   var translation = "<span class=\"fontBlue\"> function </span> <span class=\"fontLightBlue\"> body_" +
                     ctx.children[1].getText() + "</span>" +  // ID
                     getTranslationOrText(ctx, 2);
   ctx.text = translation;
 
-  console.log("exitBody_declaration");
-  console.log(ctx.text);
-  console.log("exitBody_declaration\n");
 };
 
+// Exit a parse tree produced by SRParser#comment.
+SRListener.prototype.exitComment = function(ctx) {
+
+};
 
 // Enter a parse tree produced by SRParser#body_declaration1.
 HtmlSRListener.prototype.enterBody_declaration1 = function(ctx) {
@@ -246,9 +221,9 @@ HtmlSRListener.prototype.enterBody_declaration11 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#body_declaration11.
 HtmlSRListener.prototype.exitBody_declaration11 = function(ctx) {
-  ctx.text = "("+
-  getTranslationOrText(ctx,0) + "){" +
-  getTranslationOrText(ctx,2) + "}";
+  ctx.text = '<span class="fontWhite">(</span>'+
+  getTranslationOrText(ctx,0) + '<span class="fontWhite">){</span>' +
+  getTranslationOrText(ctx,2) + '<span class="fontWhite">}</span>';
 
 };
 
@@ -346,19 +321,15 @@ SRListener.prototype.exitConstant_declaration = function(ctx) {
   var text = ''
   for (var index = 0; index <  ctx.children.length; index++ ) {
     let auxtext = ctx.children[index].getText()
-
+    if(index==0)
+      auxtext = "<span class='fontBlue'>" + auxtext  + "</span>"
+    else if(index==1)
+      auxtext = "<span class='fontLightBlue'>" + auxtext  + "</span>"
     if(auxtext == ":=")
-      auxtext = "="
-    else auxtext = getTranslationOrText(ctx, index);
+      auxtext = "<span class='fontWhite'> = </span>"
     text += auxtext
   }
-
-
-  ctx.text = text;
-
-  console.log("exitConstant_declaration");
-  console.log(ctx.text);
-  console.log("exitConstant_declaration\n");
+  ctx.text = text + '<br>&nbsp;&nbsp;&nbsp;&nbsp;';
 
 };
 
@@ -433,7 +404,25 @@ HtmlSRListener.prototype.enterConditional_statement = function(ctx) {
 
 // Exit a parse tree produced by SRParser#conditional_statement.
 HtmlSRListener.prototype.exitConditional_statement = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(index==0){
+      if(auxtext == 'do')
+        auxtext = "<span class='fontPurple'>" + 'while'  + "</span>"
+      else if(auxtext == 'if')
+        auxtext = "<span class='fontPurple'>" + 'if'  + "</span>"
+    } //if
+    else if(index==2)
+      auxtext = "<span class='fontWhite'>" + '{'  + "</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+    else if(index==4)
+      auxtext = "<span class='fontWhite'>" + '}'  + "</span><br>&nbsp;&nbsp;&nbsp;&nbsp;"
+    else
+      auxtext = getTranslationOrText(ctx, index);
+    text += auxtext
+  }
+  ctx.text = text;
+
 };
 
 
@@ -443,7 +432,16 @@ HtmlSRListener.prototype.enterProcedure_specification = function(ctx) {
 
 // Exit a parse tree produced by SRParser#procedure_specification.
 HtmlSRListener.prototype.exitProcedure_specification = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(auxtext=='end')
+      auxtext = "<span class='fontWhite'>" + '}'  + "</span><br>&nbsp;&nbsp;&nbsp;&nbsp;"
+    else
+      auxtext = getTranslationOrText(ctx, index);
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
 
@@ -453,7 +451,17 @@ HtmlSRListener.prototype.enterProcedure_specification1 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#procedure_specification1.
 HtmlSRListener.prototype.exitProcedure_specification1 = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(auxtext=='(')
+      auxtext = "<span class='fontWhite'>" + '('  + "</span>"
+    else if(auxtext==')')
+      auxtext = "<span class='fontWhite'>" + '){'  + "</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
 
@@ -554,7 +562,7 @@ HtmlSRListener.prototype.enterProcedure_reserved_word = function(ctx) {
 
 // Exit a parse tree produced by SRParser#procedure_reserved_word.
 HtmlSRListener.prototype.exitProcedure_reserved_word = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  ctx.text = '<span class="fontBlue">function </span>'
 };
 
 
@@ -846,7 +854,17 @@ HtmlSRListener.prototype.enterFunction_n_parameters = function(ctx) {
 
 // Exit a parse tree produced by SRParser#function_n_parameters.
 HtmlSRListener.prototype.exitFunction_n_parameters = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(index == 1) //(
+      auxtext = "<span class='fontWhite'>(</span>";
+    else if(index==3) //)
+      auxtext = "<span class='fontWhite'>)</span>";
+    else auxtext = getTranslationOrText(ctx, index);
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
 
@@ -906,7 +924,7 @@ HtmlSRListener.prototype.enterFnp_reserved_word_type_1 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#fnp_reserved_word_type_1.
 HtmlSRListener.prototype.exitFnp_reserved_word_type_1 = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  ctx.text = '<span class="fontGreen">console</span>.log'
 };
 
 
@@ -916,7 +934,7 @@ HtmlSRListener.prototype.enterFnp_reserved_word_type_2 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#fnp_reserved_word_type_2.
 HtmlSRListener.prototype.exitFnp_reserved_word_type_2 = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  ctx.text = '<span class="fontGreen">console</span>.log'
 };
 
 
@@ -1006,7 +1024,18 @@ HtmlSRListener.prototype.enterBoolean_expression = function(ctx) {
 
 // Exit a parse tree produced by SRParser#boolean_expression.
 HtmlSRListener.prototype.exitBoolean_expression = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(auxtext=='(')
+      auxtext = "<span class='fontWhite'>" + '('  + "</span>"
+    else if(auxtext==')')
+      auxtext = "<span class='fontWhite'>" + ')'  + "</span>"
+    else
+      auxtext = getTranslationOrText(ctx, index);
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
 
@@ -1189,7 +1218,10 @@ HtmlSRListener.prototype.enterOp_binario_boolean = function(ctx) {
 
 // Exit a parse tree produced by SRParser#op_binario_boolean.
 HtmlSRListener.prototype.exitOp_binario_boolean = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  var text = ctx.getText()
+  if (text == '=')
+    text = '=='
+  ctx.text = '<span class="fontWhite"> ' + text + ' </span>'
 };
 
 
@@ -1249,7 +1281,7 @@ HtmlSRListener.prototype.enterSemicolon_or_not = function(ctx) {
 
 // Exit a parse tree produced by SRParser#semicolon_or_not.
 HtmlSRListener.prototype.exitSemicolon_or_not = function(ctx) {
-  ctx.text = getTextOfChildrenModified(ctx);
+  ctx.text = "</br>&nbsp;&nbsp;&nbsp;&nbsp;"
 };
 
 
