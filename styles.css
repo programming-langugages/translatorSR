@@ -7,7 +7,12 @@
 .fontLightBlue{
     color: #aadbea;
 }
-
+.fontGreen{
+    color: #5ed449;
+}
+.fontLightGreen{
+    color: #beeabe;
+}
 html, body{
     height: 100%;
 }

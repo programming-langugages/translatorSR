@@ -38,7 +38,7 @@ function getTranslationOrText(ctx, index){
 HtmlSRListener.prototype.constructor = HtmlSRListener;
 // override default listener behavior
 HtmlSRListener.prototype.enterSr_program = function(ctx) {
-    this.Res.write("<strong> Code translated </strong> <br/>");
+    this.Res.write("<span class='fontLightGreen'> //Code translated </span> <br/>");
 
 
 };
@@ -199,6 +199,10 @@ HtmlSRListener.prototype.exitBody_declaration = function(ctx) {
   console.log("exitBody_declaration\n");
 };
 
+// Exit a parse tree produced by SRParser#comment.
+SRListener.prototype.exitComment = function(ctx) {
+  console.log("COMMMMMMMMMMMMMMMMMENT", ctx)
+};
 
 // Enter a parse tree produced by SRParser#body_declaration1.
 HtmlSRListener.prototype.enterBody_declaration1 = function(ctx) {
@@ -309,7 +313,7 @@ SRListener.prototype.exitConstant_declaration = function(ctx) {
       auxtext = "<span class='fontWhite'> = </span>"
     text += auxtext
   }
-  ctx.text = text + "</br>&nbsp;&nbsp;&nbsp;&nbsp;";
+  ctx.text = text;
 
 };
 
@@ -662,6 +666,7 @@ HtmlSRListener.prototype.enterFnp_parameter_type_1 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#fnp_parameter_type_1.
 HtmlSRListener.prototype.exitFnp_parameter_type_1 = function(ctx) {
+  ctx.text = getTextOfChildrenModified(ctx);
 };
 
 
@@ -698,6 +703,7 @@ HtmlSRListener.prototype.enterPrimitive_function = function(ctx) {
 
 // Exit a parse tree produced by SRParser#primitive_function.
 HtmlSRListener.prototype.exitPrimitive_function = function(ctx) {
+  ctx.text = getTextOfChildrenModified(ctx);
 };
 
 
@@ -725,6 +731,17 @@ HtmlSRListener.prototype.enterFunction_n_parameters = function(ctx) {
 
 // Exit a parse tree produced by SRParser#function_n_parameters.
 HtmlSRListener.prototype.exitFunction_n_parameters = function(ctx) {
+  var text = ''
+  for (var index = 0; index <  ctx.children.length; index++ ) {
+    let auxtext = ctx.children[index].getText()
+    if(index == 1) //(
+      auxtext = "<span class='fontWhite'>(</span>";
+    else if(index==3) //)
+      auxtext = "<span class='fontWhite'>)</span>";
+    else auxtext = getTranslationOrText(ctx, index);
+    text += auxtext
+  }
+  ctx.text = text;
 };
 
 
@@ -779,6 +796,7 @@ HtmlSRListener.prototype.enterFnp_reserved_word_type_1 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#fnp_reserved_word_type_1.
 HtmlSRListener.prototype.exitFnp_reserved_word_type_1 = function(ctx) {
+  ctx.text = '<span class="fontGreen">console</span>.log'
 };
 
 
@@ -1085,6 +1103,7 @@ HtmlSRListener.prototype.enterSemicolon_or_not = function(ctx) {
 
 // Exit a parse tree produced by SRParser#semicolon_or_not.
 HtmlSRListener.prototype.exitSemicolon_or_not = function(ctx) {
+  ctx.text = "</br>&nbsp;&nbsp;&nbsp;&nbsp;"
 };
 
 
