@@ -2,6 +2,16 @@ const antlr4 = require('antlr4/index');
 const SRLexer = require('./SRLexer');
 const SRParser = require('./SRParser');
 var SRListener = require('./SRListener').SRListener;
+
+
+//Commands to compile grammar:
+
+// Compile grammar and generate AST for the grammar with Ctrl+D
+// antlr4 -Dlanguage=JavaScript SR.g4; antlr4 SR.g4; javac *.java; grun SR sr_program -gui
+// Compile grammar and launch server
+// antlr4 -Dlanguage=JavaScript SR.g4; node Antlr.js
+
+
 HtmlSRListener = function(res) {
     this.Res = res;
     SRListener.call(this); // inherit default listener
@@ -377,7 +387,7 @@ HtmlSRListener.prototype.exitOperation_type_declaration = function(ctx) {
   var translation = '<span class="fontBlue"> var </span> <span class="fontLightBlue">'
                     + getTranslationOrText(ctx, 1) //ID
                     + '</span> = <span class="fontBlue"> function </span>' + getTranslationOrText(ctx, 3) +
-                    '{<span class="fontPurple"> return </span> ' + getTranslationOrText(ctx,7) + '};';
+                    '<span class="fontWhite"> ){</span><span class="fontPurple"> return </span> ' + getTranslationOrText(ctx,7) + '<span class="fontWhite">}</span>;';
   ctx.text = translation + "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 };
 
@@ -616,7 +626,7 @@ HtmlSRListener.prototype.enterType_specification_op_type = function(ctx) {
 
 // Exit a parse tree produced by SRParser#type_specification_op_type.
 HtmlSRListener.prototype.exitType_specification_op_type = function(ctx) {
-  ctx.text = '('  + getTranslationOrText(ctx,0) + ')';
+  ctx.text = '<span class="fontWhite">(</span>'  + getTranslationOrText(ctx,0) + '<span class="fontWhite">)</span>';
 };
 
 
@@ -650,7 +660,7 @@ HtmlSRListener.prototype.enterType_specification_op1 = function(ctx) {
 HtmlSRListener.prototype.exitType_specification_op1 = function(ctx) {
 
   if(getTranslationOrText(ctx,1) != ""){
-    var translation = ", " + getTranslationOrText(ctx, 1) + getTranslationOrText(ctx, 2);
+    var translation = '<span class="fontWhite"> , </span> ' + getTranslationOrText(ctx, 1) + getTranslationOrText(ctx, 2);
 
   }
   else translation = "";
@@ -1361,7 +1371,7 @@ HtmlSRListener.prototype.enterIds_group_dos_puntos1 = function(ctx) {
 
 // Exit a parse tree produced by SRParser#ids_group_dos_puntos1.
 HtmlSRListener.prototype.exitIds_group_dos_puntos1 = function(ctx) {
-  var translation = ", ";
+  var translation = '<span class"fontWhite" > , </span>' ;
   ctx.text = translation;
 };
 

@@ -1,20 +1,20 @@
 $(document).ready(function() {
-    
+
     $('#translatorButton').click(function (event) {
         clearAll()
-        $.ajax({ 
-            url: 'http://localhost:8000/', 
+        $.ajax({
+            url: 'http://localhost:8000/',
             type: 'POST',
             data: { "code" : $("#codeTextArea").val() },
-            cache: false, 
-            timeout: 5000, 
-            success: function(data) { 
-                $("#result").append(data); 
-            }, 
-            error: function(jqXHR, textStatus, errorThrown) { 
-                console.log('Error connecting to the Node.js server... ' + textStatus + " " + errorThrown); 
-            } 
-        }); 
+            cache: false,
+            timeout: 5000,
+            success: function(data) {
+                $("#result").append(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('Error connecting to the Node.js server... ' + textStatus + " " + errorThrown);
+            }
+        });
     });
 });
 
